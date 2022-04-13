@@ -18,7 +18,7 @@ delta = clock.getDelta(); //time in ms between each frame
 const sphere = new THREE.Mesh( 
     new THREE.SphereGeometry(5,50,50), //SphereGeometry takes 3 parameters (radius,width,height)
     new THREE.MeshBasicMaterial({
-        map: new THREE.TextureLoader().load('../textures/8k_earth_daymap.jpg') //what your object would look like
+        map: new THREE.TextureLoader().load('textures/8k_earth_daymap.jpg') //what your object would look like
     }));
     
     scene.add( sphere );//adds my sphere object to the scene
@@ -37,7 +37,7 @@ const sphere = new THREE.Mesh(
 
     //drag and rotate the earth hopefully
     function drag(){
-        
+
     }
     //this will hopefully let me click on individual continents to get a modal pop up might need to do math to do it tho
     function selectCont(){
