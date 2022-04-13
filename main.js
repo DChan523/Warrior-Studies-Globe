@@ -35,6 +35,10 @@ const sphere = new THREE.Mesh(
         renderer.render( scene, camera );
     };
 
+    //drag and rotate the earth hopefully
+    function drag(){
+        
+    }
     //this will hopefully let me click on individual continents to get a modal pop up might need to do math to do it tho
     function selectCont(){
 
@@ -42,3 +46,8 @@ const sphere = new THREE.Mesh(
 
         animate();
     
+
+
+
+
+
