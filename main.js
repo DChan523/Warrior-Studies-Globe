@@ -1,16 +1,23 @@
 //import * as THREE from 'three'   get some error when i import the module here 
+
 let clock = new THREE.Clock();  //creates a new clock object used to time stuff
+let mouse = new THREE.Vector2();
+let raycaster = new THREE.Raycaster();
+let pointOfIntersection = new THREE.Vector3();
+var localPoint = new THREE.Vector3();
 const scene = new THREE.Scene();    //makes a new scene
-const camera = new THREE.PerspectiveCamera( 75, innerWidth / innerHeight, 0.1, 1000 ); //perspective on the object
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ); //perspective on the object
 
 const renderer = new THREE.WebGLRenderer(
     {
         antialias:true  //gets rid of some of the jaggedness
     }
 ); 
-renderer.setSize(innerWidth, innerHeight );
+renderer.setSize(window.innerWidth, window.innerHeight );
 renderer.setPixelRatio(window.devicePixelRatio);// the internet said this was good
 document.body.appendChild( renderer.domElement ); // adds object to page when called
+
+let controls = new THREE.OrbitControls(camera, renderer.domElement); //allows camera to orbit around a target
 
 time = clock.getElapsedTime();  //total time elapsed in ms since the clock was created
 delta = clock.getDelta(); //time in ms between each frame
@@ -25,6 +32,14 @@ const sphere = new THREE.Mesh(
 
     camera.position.z = 15; //must be greater than the radius of the object
 
+    //drag and rotate the earth hopefully
+    window.addEventListener("dragstart", sphereClick, false);
+    //
+    function sphereClick(event) {
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    }
+
     function animate() {
         requestAnimationFrame( animate );//creates a loop that will draw the scene everytime the screen is refreshed
         
@@ -34,20 +49,8 @@ const sphere = new THREE.Mesh(
 
         renderer.render( scene, camera );
     };
-
-    //drag and rotate the earth hopefully
-    function drag(){
-
-    }
-    //this will hopefully let me click on individual continents to get a modal pop up might need to do math to do it tho
-    function selectCont(){
-
-    }
-
         animate();
     
 
 
-
-
-
+        
