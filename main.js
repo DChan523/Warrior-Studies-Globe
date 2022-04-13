@@ -34,7 +34,7 @@ const sphere = new THREE.Mesh(
 
     //drag and rotate the earth hopefully
     window.addEventListener("dragstart", sphereClick, false);
-    //
+    
     function sphereClick(event) {
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
