@@ -49,7 +49,8 @@ const sphere = new THREE.Mesh(
 
         renderer.render( scene, camera );
     };
-        animate();
+    
+    animate();
     
 
 
