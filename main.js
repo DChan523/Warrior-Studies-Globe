@@ -4,7 +4,8 @@ let clock = new THREE.Clock();  //creates a new clock object used to time stuff
 let mouse = new THREE.Vector2();
 let raycaster = new THREE.Raycaster();
 let pointOfIntersection = new THREE.Vector3();
-var localPoint = new THREE.Vector3();
+let localPoint = new THREE.Vector3();
+let lat, lon;
 const scene = new THREE.Scene();    //makes a new scene
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ); //perspective on the object
 
@@ -46,34 +47,25 @@ const sphere = new THREE.Mesh(geometry, material);
         
         //this runs every frame assuming 60 fps
         sphere.rotation.x += delta * 1; // this controls the vertical spin for some reason
-        //sphere.rotation.y += 0.0025; //this controls the horizontal spin
+        sphere.rotation.y += 0.0025; //this controls the horizontal spin
 
         renderer.render( scene, camera );
     };
 
     
-    let nullPoint = new THREE.Mesh(new THREE.SphereGeometry(3.5, 0, 0), new THREE.MeshBasicMaterial({
+    let nAmer = new THREE.Mesh(new THREE.SphereGeometry(0.3125, 0, 0), new THREE.MeshBasicMaterial({
         color: "red"
       }));
-      nullPoint.position.set(10, 0, 2);
-      sphere.add(nullPoint);
+      nAmer.position.set(0.01, 4, 4);
+      sphere.add(nAmer);
     
     let domEvents	= new THREEx.DomEvents(camera, renderer.domElement);
 
-    domEvents.addEventListener(mesh, 'click', function(event){
-		console.log('you clicked on mesh', mesh)
+    domEvents.addEventListener(nAmer, 'click', function(event){
+		console.log('you clicked on mesh', nAmer)
 	}, false)
+      
 
-    //   function Click( event ) {
-    //     raycaster.setFromCamera( mouse, camera );
-    //     let isIntersected = raycaster.intersectObject( nullPoint );
-    //     if (isIntersected) {
-    //         console.log("potato")
-    //     }
-    // }
-    // window.addEventListener( 'click', Click);
-    
-    
     animate();
     
 
