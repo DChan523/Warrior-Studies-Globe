@@ -31,13 +31,7 @@ const sphere = new THREE.Mesh(geometry, material);
     
     scene.add( sphere );//adds my sphere object to the scene
 
-    camera.position.z = 15; //must be greater than the radius of the object
-    
-    let nullPoint = new THREE.Mesh(new THREE.SphereGeometry(3.5, 0, 0), new THREE.MeshBasicMaterial({
-        color: "red"
-      }));
-      nullPoint.position.set(0, 0, 2);
-      sphere.add(nullPoint);
+    camera.position.z = 15; //must be greater than the radius of the object            
 
     //drag and rotate the earth hopefully
     window.addEventListener("dragstart", sphereMove, false);
@@ -56,8 +50,22 @@ const sphere = new THREE.Mesh(geometry, material);
 
         renderer.render( scene, camera );
     };
+
     
-    animate();
+    let nullPoint = new THREE.Mesh(new THREE.SphereGeometry(3.5, 0, 0), new THREE.MeshBasicMaterial({
+        color: "red"
+      }));
+      nullPoint.position.set(0, 0, 2);
+      sphere.add(nullPoint);
+    
+    let domEvents= new THREEx.DomEvents(camera, renderer.domElement)
+    
+      domEvents.addEventListener(nullPoint, 'click', function(event){
+		console.log('you clicked on mesh', nullPoint)
+	}, false)
+
+
+      animate();
     
 
 
