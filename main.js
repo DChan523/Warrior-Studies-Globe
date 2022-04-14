@@ -26,11 +26,18 @@ const material = new THREE.MeshBasicMaterial({
                     map: new THREE.TextureLoader().load('textures/8k_earth_daymap.jpg') // maps earth texture onto our globe
                 });
 let geometry = new THREE.SphereGeometry(5,50,50);   //SphereGeometry takes 3 parameters (radius,width,height)
+
 const sphere = new THREE.Mesh(geometry, material);  
     
     scene.add( sphere );//adds my sphere object to the scene
 
     camera.position.z = 15; //must be greater than the radius of the object
+    
+    let nullPoint = new THREE.Mesh(new THREE.SphereGeometry(3.5, 0, 0), new THREE.MeshBasicMaterial({
+        color: "red"
+      }));
+      nullPoint.position.set(0, 0, 2);
+      sphere.add(nullPoint);
 
     //drag and rotate the earth hopefully
     window.addEventListener("dragstart", sphereMove, false);
@@ -45,7 +52,7 @@ const sphere = new THREE.Mesh(geometry, material);
         
         //this runs every frame assuming 60 fps
         sphere.rotation.x += delta * 1; // this controls the vertical spin for some reason
-        sphere.rotation.y += 0.0025; //this controls the horizontal spin
+        //sphere.rotation.y += 0.0025; //this controls the horizontal spin
 
         renderer.render( scene, camera );
     };
