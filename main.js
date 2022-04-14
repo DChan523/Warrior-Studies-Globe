@@ -22,18 +22,18 @@ let controls = new THREE.OrbitControls(camera, renderer.domElement); //allows ca
 time = clock.getElapsedTime();  //total time elapsed in ms since the clock was created
 delta = clock.getDelta(); //time in ms between each frame
 
-const sphere = new THREE.Mesh( 
-    new THREE.SphereGeometry(5,50,50), //SphereGeometry takes 3 parameters (radius,width,height)
-    new THREE.MeshBasicMaterial({
-        map: new THREE.TextureLoader().load('textures/8k_earth_daymap.jpg') //what your object would look like
-    }));
+const material = new THREE.MeshBasicMaterial({
+                    map: new THREE.TextureLoader().load('textures/8k_earth_daymap.jpg') // maps earth texture onto our globe
+                });
+let geometry = new THREE.SphereGeometry(5,50,50);   //SphereGeometry takes 3 parameters (radius,width,height)
+const sphere = new THREE.Mesh(geometry, material);  
     
     scene.add( sphere );//adds my sphere object to the scene
 
     camera.position.z = 15; //must be greater than the radius of the object
 
     //drag and rotate the earth hopefully
-    window.addEventListener("dragstart", sphereClick, false);
+    window.addEventListener("dragstart", sphereMove, false);
     
     function sphereMove(event) {
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
