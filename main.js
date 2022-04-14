@@ -45,7 +45,7 @@ const sphere = new THREE.Mesh(
         
         //this runs every frame assuming 60 fps
         sphere.rotation.x += delta * 1; // this controls the vertical spin for some reason
-        sphere.rotation.y += 0.005; //this controls the horizontal spin
+        sphere.rotation.y += 0.0025; //this controls the horizontal spin
 
         renderer.render( scene, camera );
     };
