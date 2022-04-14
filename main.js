@@ -55,18 +55,23 @@ const sphere = new THREE.Mesh(geometry, material);
     let nullPoint = new THREE.Mesh(new THREE.SphereGeometry(3.5, 0, 0), new THREE.MeshBasicMaterial({
         color: "red"
       }));
-      nullPoint.position.set(0, 0, 2);
+      nullPoint.position.set(10, 0, 2);
       sphere.add(nullPoint);
     
+    let domEvents	= new THREEx.DomEvents(camera, renderer.domElement);
 
-      function Click( event ) {
-        raycaster.setFromCamera( mouse, camera );
-        let isIntersected = raycaster.intersectObject( nullPoint );
-        if (isIntersected) {
-            console.log("potato")
-        }
-    }
-    window.addEventListener( 'click', Click);
+    domEvents.addEventListener(mesh, 'click', function(event){
+		console.log('you clicked on mesh', mesh)
+	}, false)
+
+    //   function Click( event ) {
+    //     raycaster.setFromCamera( mouse, camera );
+    //     let isIntersected = raycaster.intersectObject( nullPoint );
+    //     if (isIntersected) {
+    //         console.log("potato")
+    //     }
+    // }
+    // window.addEventListener( 'click', Click);
     
     
     animate();
