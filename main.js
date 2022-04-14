@@ -58,14 +58,18 @@ const sphere = new THREE.Mesh(geometry, material);
       nullPoint.position.set(0, 0, 2);
       sphere.add(nullPoint);
     
-    let domEvents= new THREEx.DomEvents(camera, renderer.domElement)
+
+      function Click( event ) {
+        raycaster.setFromCamera( mouse, camera );
+        let isIntersected = raycaster.intersectObject( nullPoint );
+        if (isIntersected) {
+            console.log("potato")
+        }
+    }
+    window.addEventListener( 'click', Click);
     
-      domEvents.addEventListener(nullPoint, 'click', function(event){
-		console.log('you clicked on mesh', nullPoint)
-	}, false)
-
-
-      animate();
+    
+    animate();
     
 
 
